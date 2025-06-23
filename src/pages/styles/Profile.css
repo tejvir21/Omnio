@@ -1,0 +1,101 @@
+.profile-page {
+    
+}
+
+.profile-page span {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background: #282c34;
+    font-size: 2.1rem;
+    padding: 20px;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.profile-page p {
+    color: #444;
+    font-size: 1.08rem;
+    margin-bottom: 12px;
+}
+
+.profile-page .logout-btn {
+    padding: 12px 32px;
+    background: #e81123;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(232,17,35,0.08);
+}
+
+.profile-page .login-btn {
+    background: #0078d4;
+    padding: 12px 32px;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(232,17,35,0.08);
+}
+
+.profile-page .logout-btn:hover {
+    background: #b50d1e;
+}
+
+.profile-page .login-btn:hover {
+    background: #005a9e;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 100px 40px;
+    border-radius: 10px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.profile-info img {
+    align-self: center;
+    margin-bottom: 25px;
+    border: 2px solid #929292;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-data {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icons {
+    font-size: 25px;
+}
+
+@media (max-width: 600px) {
+    .profile-page span {
+        font-size: 1.8rem;
+        padding: 15px;
+    }
+
+    .profile-page .login-btn {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}

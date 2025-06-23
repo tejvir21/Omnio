@@ -1,0 +1,41 @@
+.add-friends-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  background-color: #282c34;
+  padding: 18px 0 14px 0;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0, 120, 212, 0.1);
+  animation: navbarFadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes navbarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.add-friends-navbar span {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 8px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, transform 0.18s;
+  user-select: none;
+}
+
+.add-friends-navbar span:hover,
+.add-friends-navbar span.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #181c24;
+  transform: scale(1.08);
+}

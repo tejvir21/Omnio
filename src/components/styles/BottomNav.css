@@ -1,0 +1,38 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 20px;
+    background-color: #282c34;
+    color: white;
+}
+
+.bottom-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.decorate {
+    font-weight: 600;
+}
+
+.icon:focus {
+    outline: none;
+    background-color: #282c34;
+    background-color: black;
+}

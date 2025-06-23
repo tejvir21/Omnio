@@ -1,0 +1,201 @@
+.community-title {
+  font-size: 1.4em;
+  background-color: #282c34;
+  color: #fff;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 15px;
+}
+.community-description {
+  font-size: 1.2em;
+  color: #3f3e3ee5;
+  padding: 1px 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.community-chat-avatar {
+  background: transparent;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.community-page .chat-avatar {
+  background: transparent;
+  min-height: 40px;
+  height: fit-content;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.community-page {
+  height: 100vh;
+  overflow: hidden;
+  background-image: url(../../assets/images/omnio-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2em;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+form {
+  margin: 0%;
+  padding: 0%;
+}
+
+.chat-input input {
+  width: 92%;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 20px;
+  padding-left: 50px;
+  font-size: 1.2em;
+  background-color: #282c34;
+  color: #333;
+  position: absolute;
+  bottom: 2px;
+  left: 10px;
+  color: #fff;
+}
+.chat-input input:focus {
+  outline: none;
+}
+
+.omnio-logo {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  bottom: 2px;
+  left: 12px;
+}
+
+.send-button {
+  position: absolute;
+  bottom: 2px;
+  left: 94%;
+  border: none;
+  background: none;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 50px;
+}
+
+.community-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  height: 69vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* scroll-behavior: smooth; */
+}
+
+.community-message {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.message-content {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sender-name {
+  font-size: 11px;
+  align-self: flex-end;
+  color: #303030;
+}
+
+.sent-to-community {
+  background-color: #77f18b;
+  color: #014712;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  overflow-wrap: normal;
+  align-self: flex-end;
+  color: #000;
+}
+
+.received-at-community {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  overflow-wrap: normal;
+  align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .chat-input input {
+    width: 80%;
+  }
+
+  .community-messages {
+    height: 67.6vh;
+  }
+
+  .send-button {
+    left: 85%;
+  }
+
+  .friend-name {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+
+  .omnio-logo {
+    width: 40px;
+    height: 40px;
+    bottom: 5px;
+    left: 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  .chat-input input {
+    width: 80%;
+  }
+
+  .community-messages {
+    height: 71.5vh;
+  }
+
+  .send-button {
+    left: 85%;
+  }
+
+  .friend-name {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+
+  .omnio-logo {
+    width: 40px;
+    height: 40px;
+    bottom: 5px;
+    left: 15px;
+  }
+}

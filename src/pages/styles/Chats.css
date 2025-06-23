@@ -1,0 +1,136 @@
+.chats-page {
+  background: #111b21;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.chats-container {
+  margin: 0px auto 0 auto;
+  background: #222e35;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  padding: 0;
+  overflow: hidden;
+}
+
+.chats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #2a3942;
+  background: #222e35;
+  cursor: pointer;
+  transition: background 0.2s;
+  animation: chatFadeIn 0.5s;
+}
+
+@keyframes chatFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-item:hover {
+  background: #2a3942;
+}
+
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #47524f;
+  border-radius: 50%;
+  background: #00a884;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 168, 132, 0.1);
+  flex-shrink: 0;
+}
+
+.chat-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chat-username {
+  color: #fff;
+  font-size: 1.13rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.chat-lastmsg {
+  color: #aebac1;
+  font-size: 0.97rem;
+  font-weight: 400;
+}
+
+.horizontal-ruler {
+  border: none;
+  height: 1px;
+  background: #1f1f1f; /* or any color you want */
+  margin: 0 0 0 0;
+}
+
+.user-name {
+  color: #ffffffc0;
+}
+@media (max-width: 600px) {
+  .chats-container {
+    max-width: 100vw;
+    border-radius: 0;
+  }
+}
+
+.search-friends {
+  margin-top: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.search-friends input {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px 16px;
+  border-radius: 22px;
+  border: 1px solid #3d3f41;
+  font-size: 1rem;
+  background: #2e2f30;
+  color: #222e35;
+  transition: border 0.2s;
+  outline: none;
+  
+}
+
+.search-friends input:focus {
+  border: 1.5px solid #00a884;
+  background: #2e2f30;
+  color: #fff;
+}
+
+.no-chats-info {
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+}

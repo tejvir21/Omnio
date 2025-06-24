@@ -73,8 +73,10 @@ export const Chat = () => {
   }, [messages]); // Only for scrolling, not for socket logic
 
   return (
-    <div className="chat-page">
-      <img src={logo} alt="Omnio-logo" className="omnio-logo" />
+    <div
+      className="chat-page"
+      style={{ backgroundImage: "../assets/images/background7.jpg" }}
+    >
       <div className="friend-name">
         <button className="back-button" onClick={() => window.history.back()}>
           <IoMdArrowRoundBack />
@@ -97,6 +99,8 @@ export const Chat = () => {
       </div>
       <form onSubmit={sendMessage}>
         <div className="chat-input">
+          <img src={logo} alt="Omnio-logo" className="omnio-logo" />
+
           <input
             type="text"
             placeholder="Type your message here..."

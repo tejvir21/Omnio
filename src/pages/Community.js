@@ -73,8 +73,6 @@ export const Community = () => {
   return (
     <>
       <div className="community-page">
-        <img src={logo} alt="Omnio-logo" className="omnio-logo" />
-
         <div className="community-title">
           <button className="back-button" onClick={() => window.history.back()}>
             <IoMdArrowRoundBack />
@@ -90,13 +88,28 @@ export const Community = () => {
 
         <div className="community-messages">
           {messages.map((msg, index) => (
-            <div key={index} className={`community-message ${msg.message_from._id === localStorage.getItem("user") || msg.message_from === localStorage.getItem("user") ? "sent-to-community" : "received-at-community"}`} ref={index === messages.length - 1 ? lastMessageRef : null}>
-              <span className="message-content" >
+            <div
+              key={index}
+              className={`community-message ${
+                msg.message_from._id === localStorage.getItem("user") ||
+                msg.message_from === localStorage.getItem("user")
+                  ? "sent-to-community"
+                  : "received-at-community"
+              }`}
+              ref={index === messages.length - 1 ? lastMessageRef : null}
+            >
+              <span className="message-content">
                 <img src={profileImage} alt="" className="chat-avatar" />
-              <span className="message-text">{msg.message}</span>
+                <span className="message-text">{msg.message}</span>
               </span>
               <p className="sender-name">
-                - message from <strong>{msg.message_from._id === localStorage.getItem("user") || msg.message_from === localStorage.getItem("user") ? "You" : msg.message_from.username || msg.username}</strong>
+                - message from{" "}
+                <strong>
+                  {msg.message_from._id === localStorage.getItem("user") ||
+                  msg.message_from === localStorage.getItem("user")
+                    ? "You"
+                    : msg.message_from.username || msg.username}
+                </strong>
               </p>
             </div>
           ))}
@@ -104,6 +117,8 @@ export const Community = () => {
 
         <form onSubmit={sendMessage}>
           <div className="chat-input">
+            <img src={logo} alt="Omnio-logo" className="omnio-logo" />
+
             <input
               type="text"
               placeholder="Type your message here..."

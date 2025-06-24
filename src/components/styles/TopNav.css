@@ -70,6 +70,10 @@
   top: 60px;
   right: 24px;
   width: 320px;
+  max-height: 80dvh;
+  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
   background: transparent;
   backdrop-filter: blur(10px);
   border-radius: 12px;

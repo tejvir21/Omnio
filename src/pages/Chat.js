@@ -12,10 +12,13 @@ export const Chat = () => {
   const friendId = localStorage.getItem("id");
   const friendName = localStorage.getItem("name");
   const myUsername = localStorage.getItem("username");
+  const friendProfileImage = localStorage.getItem("profile_image");
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
+  const [bgImage, setBgImage] = useState(localStorage.getItem("chat_background") || "");
+
   // const [unread, setUnread] = useState(0);
   const lastMessageRef = useRef(null);
 
@@ -73,46 +76,57 @@ export const Chat = () => {
   }, [messages]); // Only for scrolling, not for socket logic
 
   return (
-    <div
-      className="chat-page"
-      style={{ backgroundImage: "../assets/images/background7.jpg" }}
-    >
-      <div className="friend-name">
-        <button className="back-button" onClick={() => window.history.back()}>
-          <IoMdArrowRoundBack />
-        </button>
-        <img src={profileImage} alt="" className="chat-avatar" />
-        {friendName}
-
-        {/* {unread > 0 && <span className="unread-count">{unread}</span>} */}
-      </div>
-      <div className="chat-messages">
-        {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`message ${msg.from === userId ? "sent" : "received"}`}
-            ref={idx === messages.length - 1 ? lastMessageRef : null}
-          >
-            <span className="message-text">{msg.content}</span>
-          </div>
-        ))}
-      </div>
-      <form onSubmit={sendMessage}>
-        <div className="chat-input">
-          <img src={logo} alt="Omnio-logo" className="omnio-logo" />
-
-          <input
-            type="text"
-            placeholder="Type your message here..."
-            className="chat-input-field"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button type="submit" className="send-button">
-            <IoSend />
+    <>
+      <div
+        className="chat-page"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+        }}
+      >
+        <div className="friend-name">
+          <button className="back-button" onClick={() => window.history.back()}>
+            <IoMdArrowRoundBack />
           </button>
+          <img
+            src={friendProfileImage || profileImage}
+            alt=""
+            className="chat-avatar"
+          />
+          {friendName}
+
+          {/* {unread > 0 && <span className="unread-count">{unread}</span>} */}
         </div>
-      </form>
-    </div>
+        <div className="chat-messages">
+          {messages.map((msg, idx) => (
+            <div
+              key={idx}
+              className={`message ${msg.from === userId ? "sent" : "received"}`}
+              ref={idx === messages.length - 1 ? lastMessageRef : null}
+            >
+              <span className="message-text">{msg.content}</span>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={sendMessage}>
+          <div className="chat-input">
+            <img src={logo} alt="Omnio-logo" className="omnio-logo" />
+
+            <input
+              type="text"
+              placeholder="Type your message here..."
+              className="chat-input-field"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button type="submit" className="send-button">
+              <IoSend />
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };

@@ -3,6 +3,7 @@ import "./styles/AddFriends.css";
 import { Loader } from "./loader";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import profileImage from "../assets/images/profile.png";
 
 export const AddNewFriends = ({ fetchFriends }) => {
   const [users, setUsers] = useState([]);
@@ -10,27 +11,39 @@ export const AddNewFriends = ({ fetchFriends }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const sendFriendRequest = async (friendId) => {
-      try {
-        await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/friends/request`,
-          { friendId },
-          { withCredentials: true }
-        );
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/friends/request`,
+        { friendId },
+        { withCredentials: true }
+      );
 
-        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== friendId));
+      setUsers((prevUsers) =>
+        prevUsers.filter((user) => user._id !== friendId)
+      );
 
-        toast.success("Friend request sent successfully!");
-      } catch (error) {
-        console.error(
-          "Error sending friend request:",
-          error.response || error.message || error
-        );
-        toast.error(
-          (error.response && error.response.data && error.response.data.message) ||
-            "Failed to send friend request. Please try again."
-        );
+      toast.success("Friend request sent successfully!", {
+        draggable: true,
+        closeButton: false,
+        closeOnClick: true,
+      });
+    } catch (error) {
+      console.error(
+        "Error sending friend request:",
+        error.response || error.message || error
+      );
+      toast.error(
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+          "Failed to send friend request. Please try again.", {
+        draggable: true,
+        closeButton: false,
+        closeOnClick: true,
       }
-    };
+      );
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -66,8 +79,14 @@ export const AddNewFriends = ({ fetchFriends }) => {
             )
             .map((user) => (
               <div key={user._id} className="add-friend-item">
-                {/* <img src={user.profilePicture || '/default-profile.png'} alt={`${user.username}'s profile`} className="add-friend-avatar" /> */}
-                <span className="add-friend-username">{user.username}</span>
+                <div className="friend-profile">
+                  <img
+                    src={user.profile_image || profileImage}
+                    alt={`${user.username}'s profile image`}
+                    className="add-friend-avatar"
+                  />
+                  <span className="add-friend-username">{user.username}</span>
+                </div>
                 <button
                   className="add-friend-button"
                   onClick={() => sendFriendRequest(user._id)}

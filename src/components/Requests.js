@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "./styles/Requests.css";
 import axios from "axios";
-import {Loader} from "./loader";
+import { Loader } from "./loader";
+import profileImage from "../assets/images/profile.png";
 
 export const Rqts = ({ fetchRequests }) => {
   const [requests_to_accept, setRequestsToAccept] = useState([]);
@@ -31,8 +32,6 @@ export const Rqts = ({ fetchRequests }) => {
     getRequests();
   }, [fetchRequests]);
 
-
-
   const acceptRequest = async (requestId) => {
     setIsLoading(true);
     try {
@@ -43,7 +42,15 @@ export const Rqts = ({ fetchRequests }) => {
           withCredentials: true,
         }
       );
-      toast.success(response.data.message);
+
+      setTimeout(() => {
+        toast.success(response.data.message, {
+        draggable: true,
+        closeButton: false,
+        closeOnClick: true,
+      });
+      }, 1);
+      
       setRequestsToAccept((prev) =>
         prev.filter((request) => request._id !== requestId)
       );
@@ -51,16 +58,25 @@ export const Rqts = ({ fetchRequests }) => {
     } catch (error) {
       setIsLoading(false);
       // Handle error gracefully
-      toast.error(
+
+      setTimeout(() => {
+        toast.error(
         error.response.data.message ||
-          "Failed to accept friend request. Please try again later."
+          "Failed to accept friend request. Please try again later.",
+        {
+          draggable: true,
+          closeButton: false,
+          closeOnClick: true,
+        }
       );
+      }, 1);
+      
       console.error("Error accepting friend request:", error);
     }
   };
 
-    const rejectRequest = async (requestId) => {
-  setIsLoading(true);
+  const rejectRequest = async (requestId) => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/friends/reject`,
@@ -70,24 +86,43 @@ export const Rqts = ({ fetchRequests }) => {
         }
       );
       setIsLoading(false);
-      toast.success(response.data.message);
+
+      setTimeout(() => {
+        toast.success(response.data.message, {
+          draggable: true,
+          closeButton: false,
+          closeOnClick: true,
+        });
+      }, 1);
+
+      console.log("success")
+
       setRequestsToAccept((prev) =>
         prev.filter((request) => request._id !== requestId)
       );
     } catch (error) {
       setIsLoading(false);
       // Handle error gracefully
-      toast.error(
-        error.response.data.message ||
-          "Failed to reject friend request. Please try again later."
-      );
+
+      setTimeout(() => {
+        toast.error(
+          error.response.data.message ||
+            "Failed to reject friend request. Please try again later.",
+          {
+            draggable: true,
+            closeButton: false,
+            closeOnClick: true,
+          }
+        );
+      }, 1);
+
       console.error("Error rejecting friend request:", error);
     }
-}
+  };
 
-    const cancelRequest = async (requestId, username, friendId) => {
-  setIsLoading(true);
-  try {
+  const cancelRequest = async (requestId, username, friendId) => {
+    setIsLoading(true);
+    try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/friends/cancel`,
         { requestId, username, friendId },
@@ -95,7 +130,11 @@ export const Rqts = ({ fetchRequests }) => {
           withCredentials: true,
         }
       );
-      toast.success(response.data.message);
+      toast.success(response.data.message, {
+        draggable: true,
+        closeButton: false,
+        closeOnClick: true,
+      });
       setRequestsToCancel((prev) =>
         prev.filter((request) => request._id !== requestId)
       );
@@ -105,11 +144,16 @@ export const Rqts = ({ fetchRequests }) => {
       // Handle error gracefully
       toast.error(
         error.response.data.message ||
-          "Failed to cancel friend request. Please try again later."
+          "Failed to cancel friend request. Please try again later.",
+        {
+          draggable: true,
+          closeButton: false,
+          closeOnClick: true,
+        }
       );
       console.error("Error canceling friend request:", error);
     }
-}
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -136,12 +180,28 @@ export const Rqts = ({ fetchRequests }) => {
             )
             .map((request) => (
               <div key={request._id} className="requests-item">
-                {/* <img src={user.profilePicture || '/default-profile.png'} alt={`${user.username}'s profile`} className="add-friend-avatar" /> */}
-                <span className="requests-username">
-                  {request.request_from.username}
-                </span>
-                <button className="requests-button" onClick={() => acceptRequest(request._id)} >Accept</button>
-                <button className="requests-button-del" onClick={() => rejectRequest(request._id)} >Reject</button>
+                <div className="requests-profile">
+                  <img
+                    src={request.request_from.profile_image || profileImage}
+                    alt={`${request.request_from.username}'s profile image`}
+                    className="add-requests-avatar"
+                  />
+                  <span className="requests-username">
+                    {request.request_from.username}
+                  </span>
+                </div>
+                <button
+                  className="requests-button"
+                  onClick={() => acceptRequest(request._id)}
+                >
+                  Accept
+                </button>
+                <button
+                  className="requests-button-del"
+                  onClick={() => rejectRequest(request._id)}
+                >
+                  Reject
+                </button>
               </div>
             ))}
         </div>
@@ -157,11 +217,26 @@ export const Rqts = ({ fetchRequests }) => {
             )
             .map((request) => (
               <div key={request._id} className="requests-item">
-                {/* <img src={user.profilePicture || '/default-profile.png'} alt={`${user.username}'s profile`} className="add-friend-avatar" /> */}
+                <img
+                  src={request.request_to.profile_image || profileImage}
+                  alt={`${request.request_to.username}'s profile image`}
+                  className="add-requests-avatar"
+                />
                 <span className="requests-username">
                   {request.request_to.username}
                 </span>
-                <button className="requests-button" onClick={() => cancelRequest(request._id, request.request_from.username, request.request_to._id)} >Cancel</button>
+                <button
+                  className="requests-button"
+                  onClick={() =>
+                    cancelRequest(
+                      request._id,
+                      request.request_from.username,
+                      request.request_to._id
+                    )
+                  }
+                >
+                  Cancel
+                </button>
               </div>
             ))}
         </div>
@@ -170,4 +245,4 @@ export const Rqts = ({ fetchRequests }) => {
       <ToastContainer />
     </>
   );
-}
+};

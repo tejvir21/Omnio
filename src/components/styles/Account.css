@@ -1,0 +1,192 @@
+.account-container {
+  height: 100vh;
+  width: 100dvw;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0%;
+  z-index: 2;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  width: 320px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05),
+    0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08),
+    0 15px 15px -6px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  padding: 1rem;
+  background: linear-gradient(to right, #2b6cb0, #2c5282);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-header:first-child {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #bee3f8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.user-info {
+  display: flex;
+  font-size: 0.9rem;
+  align-items: center;
+  text-transform: none;
+  margin-top: 0.5rem;
+}
+
+.user-icon {
+  background: #ebf8ff;
+  color: #3182ce;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+}
+
+.user-email {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  position: relative;
+}
+
+.user-email:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #2b6cb0;
+  transition: width 0.3s;
+}
+
+/* Menu container */
+.menu {
+  padding: 0.5rem 0;
+}
+
+/* Shared menu item styles */
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  color: #3182ce; /* gray-700 */
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: #ebf8ff; /* blue-50 */
+}
+
+/* Side indicator */
+.indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0.25rem;
+  background-color: #3182ce; /* blue-600 */
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  opacity: 0;
+  transform: scaleY(0.8);
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover .indicator {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* Icon container */
+.icon-wrapper {
+  width: 2rem;
+  height: 2rem;
+  background-color: #ebf8ff; /* blue-100 */
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover .icon-wrapper {
+  background-color: #bee3f8; /* blue-200 */
+}
+
+/* Label text */
+.menu-item span {
+  font-weight: 500;
+  transition: color 0.2s;
+  color: #1a365d;
+}
+
+.menu-item:hover span {
+  color: #1a365d; /* blue-900 */
+}
+
+/* Arrow icon */
+.arrow-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: auto;
+  color: #a0aec0; /* gray-400 */
+  transition: color 0.2s;
+}
+
+.menu-item:hover .arrow-icon {
+  color: #2b6cb0; /* blue-700 */
+}
+
+.logout {
+  color: #e53e3e;
+  cursor: pointer;
+}
+
+/* Logout override */
+.logout:hover {
+  background-color: #fef2f2; /* red-50 */
+}
+
+.logout .indicator {
+  background-color: #e53e3e; /* red-600 */
+}
+
+.logout:hover .icon-wrapper {
+  background-color: #fecaca; /* red-200 */
+}
+
+.logout:hover span {
+  color: #e53e3e; /* red-600 */
+}
+
+.logout:hover .arrow-icon {
+  color: #e53e3e; /* red-600 */
+}

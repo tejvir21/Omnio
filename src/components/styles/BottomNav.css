@@ -27,12 +27,16 @@
     font-size: 25px;
 }
 
-.decorate {
-    font-weight: 600;
-}
+/* .decorate {
+    color: #2b6cb0;
+} */
 
 .icon:focus {
     outline: none;
     background-color: #282c34;
     background-color: black;
+}
+
+.hide {
+    display: none;
 }

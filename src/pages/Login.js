@@ -5,8 +5,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { Loader } from "../components/loader";
 
-export const Login = () => {;
-
+export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -25,21 +24,34 @@ export const Login = () => {;
       setFormData({ username: "", password: "" });
       localStorage.setItem("user", response.data.id);
       localStorage.setItem("username", response.data.username);
+      localStorage.setItem("chat_background", response.data.chat_background);
 
-      toast.success(response.data.message || "Login successful!");
+      setIsLoading(false);
+
+      setTimeout(() => {
+        toast.success(response.data.message || "Login successful!", {
+          closeOnClick: true,
+          draggable: true,
+        });
+      }, 1);
+
       setTimeout(() => {
         window.location.href = "/";
       }, 1000); // Give the toast time to show
     } catch (error) {
-      // Handle error response
-      console.error("Login failed:", error.response || error.message || error);
-      toast.error(
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-          "Login failed. Please try again."
-      );
       setIsLoading(false);
+
+      // Handle error response
+      console.error("Login failed error:", error.response);
+      setTimeout(() => {
+        toast.error(
+          error.response.data.message || "Login failed. Please try again.",
+          {
+            closeOnClick: true,
+            draggable: true,
+          }
+        );
+      }, 1);
     }
   };
 

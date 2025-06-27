@@ -7,6 +7,7 @@ import { Profile } from "./pages/Profile";
 import { AddFriends } from "./pages/AddFriends";
 import { Community } from "./pages/Community";
 import { Chat } from "./pages/Chat";
+import { Settings } from "./pages/Settings";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/search" element={<AddFriends />} />
         <Route path="/community" element={<Community />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );

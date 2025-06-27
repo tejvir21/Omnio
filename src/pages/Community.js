@@ -99,7 +99,7 @@ export const Community = () => {
               ref={index === messages.length - 1 ? lastMessageRef : null}
             >
               <span className="message-content">
-                <img src={profileImage} alt="" className="chat-avatar" />
+                <img src={msg.message_from.profile_image || profileImage} alt="" className="chat-avatar" />
                 <span className="message-text">{msg.message}</span>
               </span>
               <p className="sender-name">

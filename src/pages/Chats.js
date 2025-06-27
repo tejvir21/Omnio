@@ -15,10 +15,11 @@ export const Chats = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const letsChat = ({ friendId, friendName, friendUsername }) => {
+  const letsChat = ({ friendId, friendName, friendUsername, profile_image }) => {
     localStorage.setItem("id", friendId);
     localStorage.setItem("name", friendName);
     localStorage.setItem("friend", friendUsername);
+    localStorage.setItem("profile_image", profile_image)
 
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/messages/read/${friendId}`,{}, {
@@ -63,14 +64,14 @@ export const Chats = () => {
   });
 
   // Filtered lists based on searchTerm
-  const filteredFriendsIRequested = chats.friendsIRequested.filter(
+  const filteredFriendsIRequested = chats.friendsIRequested?.filter(
     (user) =>
       user.request_to.username
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       user.request_to.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const filteredFriendsRequestedMe = chats.friendsRequestedMe.filter(
+  const filteredFriendsRequestedMe = chats.friendsRequestedMe?.filter(
     (user) =>
       user.request_from.username
         .toLowerCase()
@@ -108,8 +109,8 @@ export const Chats = () => {
         </div>
 
         <div className="chats-list">
-          {filteredFriendsIRequested.length > 0 ||
-          filteredFriendsRequestedMe.length > 0 ? (
+          {filteredFriendsIRequested?.length > 0 ||
+          filteredFriendsRequestedMe?.length > 0 ? (
             <>
               {filteredFriendsIRequested.map((user) => (
                 <div key={user._id}>
@@ -121,10 +122,11 @@ export const Chats = () => {
                         friendId: user.request_to._id,
                         friendName: user.request_to.name,
                         friendUsername: user.request_to.username,
+                        profile_image: user.request_to.profile_image,
                       })
                     }
                   >
-                    <img src={profileImage} alt="" className="chat-avatar" />
+                    <img src={user.request_to.profile_image || profileImage} alt="" className="chat-avatar" />
                     <div className="user-detail">
                       <p className="chat-username">
                         {user.request_to.username}
@@ -134,7 +136,7 @@ export const Chats = () => {
                   </div>
                 </div>
               ))}
-              {filteredFriendsRequestedMe.map((user) => (
+              {filteredFriendsRequestedMe?.map((user) => (
                 <div key={user._id}>
                   <hr className="horizontal-ruler" />
                   <div
@@ -144,10 +146,11 @@ export const Chats = () => {
                         friendId: user.request_from._id,
                         friendName: user.request_from.name,
                         friendUsername: user.request_from.username,
+                        profile_image: user.request_from.profile_image,
                       })
                     }
                   >
-                    <img src={profileImage} alt="" className="chat-avatar" />
+                    <img src={user.request_from.profile_image || profileImage} alt="" className="chat-avatar" />
                     <div className="user-detail">
                       <p className="chat-username">
                         {user.request_from.username}

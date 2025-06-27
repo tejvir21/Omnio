@@ -20,9 +20,26 @@ export const Register = () => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      toast.warning("Passwords do not match!");
+      setTimeout(() => {
+        toast.warning("Passwords do not match!", {
+          draggable: true,
+          closeOnClick: true,
+          closeButton: false
+        });
+      }, 1);
       return;
-    } else {
+    }
+    if (!formData.email) {
+      setTimeout(() => {
+        toast.warning("Email is required", {
+          draggable: true,
+          closeOnClick: true,
+          closeButton: false
+        });
+      }, 1);
+      return;
+    }
+    else {
       setIsLoading(true);
       // Send a POST request to the server to register the user
       axios
@@ -30,28 +47,42 @@ export const Register = () => {
           withCredentials: true,
         })
         .then((response) => {
-          console.log("Registration successful:", response.data);
-          toast.success("Registration successful!");
-          toast.info(response.data.message);
           setIsLoading(false);
           localStorage.setItem("user", response.data.user.id);
           localStorage.setItem("username", response.data.user.username);
+          localStorage.setItem(
+            "chat_background",
+            response.data.chat_background
+          );
+
+          setTimeout(() => {
+            toast.success("Registration successful!", {
+          draggable: true,
+          closeOnClick: true,
+          closeButton: false
+        });
+          }, 1);
+
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1000);
         })
         .catch((error) => {
+          setIsLoading(false);
           // Handle error appropriately
           console.error("There was an error registering!", error);
-          toast.error("Registration failed. Please try again.");
+          setTimeout(() => {
+            toast.error(
+              error.response.data.message ||
+                "Registration failed. Please try again."
+            , {
+          draggable: true,
+          closeOnClick: true,
+          closeButton: false
+        });
+          }, 1);
         });
     }
-    // Clear the form data
-
-    setFormData({
-      name: "",
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
   };
 
   if (localStorage.getItem("user")) {

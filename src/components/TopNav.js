@@ -25,6 +25,7 @@ export const TopNav = () => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
+                    closeButton: false,
                 });
             } else {
                 console.log("No notifications found.");
@@ -54,6 +55,7 @@ export const TopNav = () => {
                localStorage.setItem("id", friend.data._id);
                 localStorage.setItem("name", friend.data.name);
                 localStorage.setItem("friend", friendUsername);
+                localStorage.setItem("profile_image", friend.data.profile_image);
 
                 window.location.href= "/chat"
 }

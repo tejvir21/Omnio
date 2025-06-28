@@ -26,22 +26,22 @@ export const AddNewFriends = ({ fetchFriends }) => {
       setIsLoading(false);
 
       toast.success("Friend request sent successfully!", {
-              draggable: true,
-              autoClose: 3000,
-              closeButton: false,
-              closeOnClick: true,
-              draggablePercent: 30,
-              theme: "colored",
-              hideProgressBar: true,
-              style: {
-                borderRadius: "30px",
-                width: "fit-content",
-                maxWidth: "100vw",
-                overflow: "clip",
-                color: "#000",
-                fontWeight: 700,
-              },
-           });
+        draggable: true,
+        autoClose: 3000,
+        closeButton: false,
+        closeOnClick: true,
+        draggablePercent: 30,
+        theme: "colored",
+        hideProgressBar: true,
+        style: {
+          borderRadius: "30px",
+          width: "fit-content",
+          maxWidth: "100vw",
+          overflow: "clip",
+          color: "#000",
+          fontWeight: 700,
+        },
+      });
     } catch (error) {
       console.error(
         "Error sending friend request:",
@@ -54,23 +54,24 @@ export const AddNewFriends = ({ fetchFriends }) => {
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
-          "Failed to send friend request. Please try again.", {
-              draggable: true,
-              autoClose: 3000,
-              closeButton: false,
-              closeOnClick: true,
-              draggablePercent: 30,
-              theme: "colored",
-              hideProgressBar: true,
-              style: {
-                borderRadius: "30px",
-                width: "fit-content",
-                maxWidth: "100vw",
-                overflow: "clip",
-                color: "#000",
-                fontWeight: 700,
-              },
-           }
+          "Failed to send friend request. Please try again.",
+        {
+          draggable: true,
+          autoClose: 3000,
+          closeButton: false,
+          closeOnClick: true,
+          draggablePercent: 30,
+          theme: "colored",
+          hideProgressBar: true,
+          style: {
+            borderRadius: "30px",
+            width: "fit-content",
+            maxWidth: "100vw",
+            overflow: "clip",
+            color: "#000",
+            fontWeight: 700,
+          },
+        }
       );
     }
   };
@@ -80,10 +81,9 @@ export const AddNewFriends = ({ fetchFriends }) => {
     const getFriends = async () => {
       const data = await fetchFriends();
       setUsers(Array.isArray(data) ? data : []);
+      setIsLoading(false);
     };
     getFriends();
-
-    setIsLoading(false);
   }, []);
 
   if (isLoading) {

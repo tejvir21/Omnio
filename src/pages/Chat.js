@@ -27,7 +27,6 @@ export const Chat = () => {
   const lastMessageRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
     const newSocket = io(
       process.env.REACT_APP_SERVER || "http://localhost:5000"
     );
@@ -35,6 +34,8 @@ export const Chat = () => {
 
     // Join private room
     newSocket.emit("joinRoom", { userId, friendId });
+    
+    setIsLoading(true);
 
     // Fetch chat history
     axios
@@ -46,19 +47,19 @@ export const Chat = () => {
       )
       .then((res) => {
         setMessages(res.data.messages);
+        setIsLoading(false);
 
         // setUnread(res.data.unread);
       })
       .catch((err) => {
         console.error("Error fetching messages:", err);
+        setIsLoading(false);
       });
 
     // Listen for new messages
     newSocket.on("privateMessage", (msg) => {
       setMessages((prev) => [...prev, msg]);
     });
-
-    setIsLoading(false);
 
     return () => newSocket.disconnect();
   }, [userId, friendId]);
@@ -77,20 +78,15 @@ export const Chat = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-
     if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      lastMessageRef.current.scrollIntoView({ behavior: "auto" });
     }
-
-    setIsLoading(false);
   }, [messages]); // Only for scrolling, not for socket logic
 
-
   if (isLoading) {
-    return <Loader />
+    return <Loader />;
   }
-  
+
   return (
     <>
       <div

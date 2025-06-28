@@ -39,7 +39,9 @@ export const Chats = () => {
       .then((response) => {
         setIsLoading(false)
         // Redirect to the chat page
-        window.location.href = "/chat";
+        setTimeout(() => {
+          window.location.href = "/chat";
+        }, 100);
       })
       .catch((error) => {
         console.log(error, "Error marking messages as read");
@@ -65,7 +67,6 @@ export const Chats = () => {
     }
   };
 
- 
 
   // Filtered lists based on searchTerm
   const filteredFriendsIRequested = chats.friendsIRequested?.filter(

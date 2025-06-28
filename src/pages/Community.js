@@ -17,11 +17,12 @@ export const Community = () => {
   const lastMessageRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
     const newSocket = io(
       `${process.env.REACT_APP_SERVER}` || "http://localhost:5000"
     );
     setSocket(newSocket);
+
+    setIsLoading(true);
 
     // Fetch chat history
     axios
@@ -34,14 +35,13 @@ export const Community = () => {
       })
       .catch((err) => {
         console.error("Error fetching messages:", err);
+        setIsLoading(false);
       });
 
     // Listen for new community messages
     newSocket.on("communityMessage", (msg) => {
       setMessages((prevMessages) => [...prevMessages, msg]);
     });
-
-    setIsLoading(false);
 
     return () => {
       newSocket.disconnect();
@@ -61,12 +61,9 @@ export const Community = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-
     if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      lastMessageRef.current.scrollIntoView({ behavior: "auto" });
     }
-    setIsLoading(false);
   }, [messages]); // Only for scrolling, not for socket logic
 
   if (isLoading) {

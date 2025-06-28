@@ -27,10 +27,22 @@ export const EditProfile = ({ user, setEdit, edit }) => {
 
       setTimeout(() => {
         toast.info("No Changes are made", {
-          draggable: true,
-          closeButton: false,
-          closeOnClick: true,
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
 
       setTimeout(() => {
@@ -44,10 +56,22 @@ export const EditProfile = ({ user, setEdit, edit }) => {
 
       setTimeout(() => {
         toast.warning("Name and Username are required", {
-          draggable: true,
-          closeButton: false,
-          closeOnClick: true,
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
 
       return;
@@ -77,12 +101,23 @@ export const EditProfile = ({ user, setEdit, edit }) => {
         setIsLoading(false);
         setTimeout(() => {
           toast.error(
-            err.response.data.message || "Failed to upload image. Try again.",
-            {
+            err.response.data.message || "Failed to upload image. Try again.", {
               draggable: true,
+              autoClose: 3000,
               closeButton: false,
               closeOnClick: true,
-            }
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
           );
         }, 1);
       }
@@ -102,19 +137,43 @@ export const EditProfile = ({ user, setEdit, edit }) => {
           setTimeout(() => {
             toast.warning("Username already taken", {
               draggable: true,
+              autoClose: 3000,
               closeButton: false,
               closeOnClick: true,
-            });
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
           }, 1);
           return;
         }
         setIsLoading(false);
         setTimeout(() => {
           toast.success(response.data.message || "Profile Updated", {
-            draggable: true,
-            closeButton: false,
-            closeOnClick: true,
-          });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
         }, 1);
         setTimeout(() => {
           window.location.href = "/profile";
@@ -126,12 +185,23 @@ export const EditProfile = ({ user, setEdit, edit }) => {
 
         setTimeout(() => {
           toast.error(
-            error.response.data.message || "There is some server error",
-            {
+            error.response.data.message || "There is some server error", {
               draggable: true,
+              autoClose: 3000,
               closeButton: false,
               closeOnClick: true,
-            }
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
           );
         }, 1);
       });

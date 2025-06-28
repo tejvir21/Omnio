@@ -24,7 +24,23 @@ export const Rqts = ({ fetchRequests }) => {
         // Handle error gracefully
         toast.error(
           error.response.data.message ||
-            "Failed to fetch friend requests. Please try again later."
+            "Failed to fetch friend requests. Please try again later.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
         );
         console.error("Error fetching friend requests:", error);
       }
@@ -43,18 +59,33 @@ export const Rqts = ({ fetchRequests }) => {
         }
       );
 
-      setTimeout(() => {
-        toast.success(response.data.message, {
-        draggable: true,
-        closeButton: false,
-        closeOnClick: true,
-      });
-      }, 1);
-      
       setRequestsToAccept((prev) =>
         prev.filter((request) => request._id !== requestId)
       );
+      
       setIsLoading(false);
+
+      setTimeout(() => {
+        toast.success(response.data.message, {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
+      }, 1);
+      
+      
     } catch (error) {
       setIsLoading(false);
       // Handle error gracefully
@@ -62,12 +93,23 @@ export const Rqts = ({ fetchRequests }) => {
       setTimeout(() => {
         toast.error(
         error.response.data.message ||
-          "Failed to accept friend request. Please try again later.",
-        {
-          draggable: true,
-          closeButton: false,
-          closeOnClick: true,
-        }
+          "Failed to accept friend request. Please try again later.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
       );
       }, 1);
       
@@ -85,21 +127,34 @@ export const Rqts = ({ fetchRequests }) => {
           withCredentials: true,
         }
       );
+      
+      setRequestsToAccept((prev) =>
+        prev.filter((request) => request._id !== requestId)
+      );
+
       setIsLoading(false);
 
       setTimeout(() => {
         toast.success(response.data.message, {
-          draggable: true,
-          closeButton: false,
-          closeOnClick: true,
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
 
-      console.log("success")
-
-      setRequestsToAccept((prev) =>
-        prev.filter((request) => request._id !== requestId)
-      );
+      
     } catch (error) {
       setIsLoading(false);
       // Handle error gracefully
@@ -107,13 +162,23 @@ export const Rqts = ({ fetchRequests }) => {
       setTimeout(() => {
         toast.error(
           error.response.data.message ||
-            "Failed to reject friend request. Please try again later.",
-          {
-            draggable: true,
-            closeButton: false,
-            closeOnClick: true,
-          }
-        );
+            "Failed to reject friend request. Please try again later.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
 
       console.error("Error rejecting friend request:", error);
@@ -130,26 +195,52 @@ export const Rqts = ({ fetchRequests }) => {
           withCredentials: true,
         }
       );
-      toast.success(response.data.message, {
-        draggable: true,
-        closeButton: false,
-        closeOnClick: true,
-      });
+
       setRequestsToCancel((prev) =>
         prev.filter((request) => request._id !== requestId)
       );
+
       setIsLoading(false);
+
+      toast.success(response.data.message, {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });     
     } catch (error) {
       setIsLoading(false);
       // Handle error gracefully
       toast.error(
         error.response.data.message ||
-          "Failed to cancel friend request. Please try again later.",
-        {
-          draggable: true,
-          closeButton: false,
-          closeOnClick: true,
-        }
+          "Failed to cancel friend request. Please try again later.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
       );
       console.error("Error canceling friend request:", error);
     }

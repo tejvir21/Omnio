@@ -22,20 +22,44 @@ export const Register = () => {
     if (formData.password !== formData.confirmPassword) {
       setTimeout(() => {
         toast.warning("Passwords do not match!", {
-          draggable: true,
-          closeOnClick: true,
-          closeButton: false
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
       return;
     }
     if (!formData.email) {
       setTimeout(() => {
         toast.warning("Email is required", {
-          draggable: true,
-          closeOnClick: true,
-          closeButton: false
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
       return;
     }
@@ -57,10 +81,22 @@ export const Register = () => {
 
           setTimeout(() => {
             toast.success("Registration successful!", {
-          draggable: true,
-          closeOnClick: true,
-          closeButton: false
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
           }, 1);
 
           setTimeout(() => {
@@ -75,11 +111,23 @@ export const Register = () => {
             toast.error(
               error.response.data.message ||
                 "Registration failed. Please try again."
-            , {
-          draggable: true,
-          closeOnClick: true,
-          closeButton: false
-        });
+           , {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
           }, 1);
         });
     }

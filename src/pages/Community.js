@@ -17,12 +17,11 @@ export const Community = () => {
   const lastMessageRef = useRef(null);
 
   useEffect(() => {
+    setIsLoading(true);
     const newSocket = io(
       `${process.env.REACT_APP_SERVER}` || "http://localhost:5000"
     );
     setSocket(newSocket);
-
-    setIsLoading(true);
 
     // Fetch chat history
     axios
@@ -38,10 +37,11 @@ export const Community = () => {
       });
 
     // Listen for new community messages
-
     newSocket.on("communityMessage", (msg) => {
       setMessages((prevMessages) => [...prevMessages, msg]);
     });
+
+    setIsLoading(false);
 
     return () => {
       newSocket.disconnect();
@@ -61,9 +61,12 @@ export const Community = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
+    setIsLoading(false);
   }, [messages]); // Only for scrolling, not for socket logic
 
   if (isLoading) {
@@ -99,7 +102,11 @@ export const Community = () => {
               ref={index === messages.length - 1 ? lastMessageRef : null}
             >
               <span className="message-content">
-                <img src={msg.message_from.profile_image || profileImage} alt="" className="chat-avatar" />
+                <img
+                  src={msg.message_from.profile_image || profileImage}
+                  alt=""
+                  className="chat-avatar"
+                />
                 <span className="message-text">{msg.message}</span>
               </span>
               <p className="sender-name">

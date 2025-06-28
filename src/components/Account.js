@@ -18,27 +18,53 @@ export const Account = ({ setSelected }) => {
           withCredentials: true,
         }
       )
-      .then((response) => {
+      .then((response) => { 
+        
+        localStorage.clear();
+
         setIsLoading(false);
 
         toast.success("Logout successful!", {
-        draggable: true,
-        closeButton: false,
-        closeOnClick: true,
-      });
-        localStorage.clear();
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
         setTimeout(() => {
           window.location.href = "/login";
-        }, 1000);
+        }, 100);
       })
       .catch((error) => {
         setIsLoading(false);
         setTimeout(() => {
           toast.error("Logout failed. Please try again.", {
-        draggable: true,
-        closeButton: false,
-        closeOnClick: true,
-      });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
         }, 1);
         console.error("There was an error logging out!", error);
       });
@@ -142,7 +168,7 @@ export const Account = ({ setSelected }) => {
           </span>
         </div>
       </div>
-      <ToastContainer position="top center" />
+      <ToastContainer position="top-center" />
     </div>
   );
 };

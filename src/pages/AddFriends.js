@@ -25,7 +25,23 @@ export const AddFriends = () => {
         "Error fetching friends:",
         error.response || error.message || error
       );
-      toast.error("Failed to fetch users. Please try again later.");
+      toast.error(error.response.data.message || "Failed to fetch users. Please try again later.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       return [];
     }
   };
@@ -44,8 +60,24 @@ export const AddFriends = () => {
         error.response || error.message || error
       );
       toast.error(
-        (error.response && error.response.data && error.response.data.message) ||
-          "Failed to fetch friend requests. Please try again later."
+        error.response.data.message ||
+          "Failed to fetch friend requests. Please try again later.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
       );
       return [];
     }

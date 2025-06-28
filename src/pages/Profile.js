@@ -11,18 +11,17 @@ import EditButton from "../components/EditButton";
 import LoginButton from "../components/LoginButton";
 
 export const Profile = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("user"));
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("user"));
   const [profileData, setProfileData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
+    if (isLoggedIn) {
       setIsLoading(true);
       // Fetch user profile data
       axios
-        .get(`${process.env.REACT_APP_SERVER_URL}/users/by-id/${user}`, {
+        .get(`${process.env.REACT_APP_SERVER_URL}/users/by-id/${isLoggedIn}`, {
           withCredentials: true,
         })
         .then((response) => {
@@ -32,7 +31,23 @@ export const Profile = () => {
         })
         .catch((error) => {
           setIsLoading(false);
-          toast.error("Failed to fetch profile data. Please try again.");
+          toast.error(error.response.data.message || "Failed to fetch profile data. Please try again.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
           console.error("There was an error fetching the profile data!", error);
         });
     }

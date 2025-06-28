@@ -9,13 +9,24 @@ export const Chats = () => {
   localStorage.removeItem("id");
   localStorage.removeItem("name");
   localStorage.removeItem("friend");
+  localStorage.removeItem("profile_image");
 
   if (!localStorage.getItem("user"))
     window.location.href = "/login";
 
   const [isLoading, setIsLoading] = useState(false);
+ const [searchTerm, setSearchTerm] = useState("");
+
+  const [chats, setChats] = useState({
+    friendsIRequested: [],
+    friendsRequestedMe: [],
+  });
+
 
   const letsChat = ({ friendId, friendName, friendUsername, profile_image }) => {
+
+    setIsLoading(true)
+
     localStorage.setItem("id", friendId);
     localStorage.setItem("name", friendName);
     localStorage.setItem("friend", friendUsername);
@@ -26,16 +37,17 @@ export const Chats = () => {
         withCredentials: true,
       })
       .then((response) => {
+        setIsLoading(false)
         // Redirect to the chat page
         window.location.href = "/chat";
       })
       .catch((error) => {
         console.log(error, "Error marking messages as read");
+        setIsLoading(false);
       });
   };
 
   const fetchFriends = async () => {
-    setIsLoading(true);
     // Fetch friends from the server
     try {
       const response = await axios.get(
@@ -45,23 +57,15 @@ export const Chats = () => {
         }
       );
 
-      setIsLoading(false);
-
       return response.data;
     } catch (error) {
-      setIsLoading(false);
       // Handle error appropriately
       console.error("Error fetching friends:", error);
       return [];
     }
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const [chats, setChats] = useState({
-    friendsIRequested: [],
-    friendsRequestedMe: [],
-  });
+ 
 
   // Filtered lists based on searchTerm
   const filteredFriendsIRequested = chats.friendsIRequested?.filter(
@@ -81,11 +85,13 @@ export const Chats = () => {
 
   useEffect(() => {
     const getChats = async () => {
+      setIsLoading(true);
       const friends = await fetchFriends();
       setChats({
         friendsIRequested: friends.friendsIRequested,
         friendsRequestedMe: friends.friendsRequestedMe,
       });
+      setIsLoading(false);
     };
 
     getChats();

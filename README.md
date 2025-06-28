@@ -11,6 +11,12 @@ A modern, real-time chat application designed for seamless communication.
 - Group and private chats
 - Responsive UI
 - Message notifications
+- Profile editing with image upload
+- Logout functionality
+- Edit dialog closes when clicking outside
+- Support for multiple image formats in profile uploads
+- Improved error handling and notifications
+- Change chat background
 
 ---
 
@@ -95,3 +101,7 @@ For questions or feedback, please open an issue or contact [Portfolio](https://t
 ![alt text](image-2.png)
 
 ![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)

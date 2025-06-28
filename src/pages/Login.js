@@ -21,7 +21,6 @@ export const Login = () => {
         formData,
         { withCredentials: true }
       );
-      setFormData({ username: "", password: "" });
       localStorage.setItem("user", response.data.id);
       localStorage.setItem("username", response.data.username);
       localStorage.setItem("chat_background", response.data.chat_background);
@@ -30,9 +29,22 @@ export const Login = () => {
 
       setTimeout(() => {
         toast.success(response.data.message || "Login successful!", {
-          closeOnClick: true,
-          draggable: true,
-        });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
 
       setTimeout(() => {
@@ -45,11 +57,23 @@ export const Login = () => {
       console.error("Login failed error:", error.response);
       setTimeout(() => {
         toast.error(
-          error.response.data.message || "Login failed. Please try again.",
-          {
-            closeOnClick: true,
-            draggable: true,
-          }
+          error.response.data.message || "Login failed. Please try again.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
         );
       }, 1);
     }
@@ -66,7 +90,10 @@ export const Login = () => {
       </div>
       <div className="login-page">
         <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}> */}
+        <form
+          onSubmit={handleSubmit}
+        >
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input

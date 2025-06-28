@@ -11,6 +11,7 @@ export const AddNewFriends = ({ fetchFriends }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const sendFriendRequest = async (friendId) => {
+    setIsLoading(true);
     try {
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/friends/request`,
@@ -22,25 +23,54 @@ export const AddNewFriends = ({ fetchFriends }) => {
         prevUsers.filter((user) => user._id !== friendId)
       );
 
+      setIsLoading(false);
+
       toast.success("Friend request sent successfully!", {
-        draggable: true,
-        closeButton: false,
-        closeOnClick: true,
-      });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
     } catch (error) {
       console.error(
         "Error sending friend request:",
         error.response || error.message || error
       );
+
+      setIsLoading(false);
+
       toast.error(
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
           "Failed to send friend request. Please try again.", {
-        draggable: true,
-        closeButton: false,
-        closeOnClick: true,
-      }
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
       );
     }
   };

@@ -29,7 +29,23 @@ export const Settings = () => {
 
       setTimeout(() => {
         toast.error(
-        error?.response?.data?.message || "Failed to load wallpapers."
+        error?.response?.data?.message || "Failed to load wallpapers.", {
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           }
       );
       }, 1);
       
@@ -77,18 +93,43 @@ export const Settings = () => {
 
       setTimeout(() => {
         toast.success(res.data.message || "Success", {
-        closeOnClick: true,
-        draggable: true,
-        closeButton: false,
-      });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
       
     } catch (err) {
       setTimeout(() => {
         toast.error(err.response.data.message || "Failed to save to server", {
-        draggable: true,
-        closeOnClick: true,
-      });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
       
       console.error(err);
@@ -107,9 +148,22 @@ export const Settings = () => {
     } catch (err) {
       setTimeout(() => {
         toast.error(err.response.data.massage || "Upload failed", {
-        draggable: true,
-        closeOnClick: true,
-      });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
       
       console.error(err);
@@ -130,9 +184,22 @@ export const Settings = () => {
     } catch (err) {
       setTimeout(() => {
         toast.error(err.response.data.message || "Upload via URL failed", {
-        draggable: true,
-        closeOnClick: true,
-      });
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           });
       }, 1);
       
       console.error(err);
@@ -153,20 +220,44 @@ export const Settings = () => {
       localStorage.setItem("chat_background", chat_background)
       setTimeout(() => {
               toast.success(res.data.message || "Wallpaper Changed", {
-                draggable: true,
-                closeOnClick: true,
-                closeButton: false
-              })
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           })
 
       }, 1);
       
     })
     .catch(err => {
       toast.error(err.response.data.message || "Error in changing wallpaper", {
-                draggable: true,
-                closeOnClick: true,
-                closeButton: false
-              })
+              draggable: true,
+              autoClose: 3000,
+              closeButton: false,
+              closeOnClick: true,
+              draggablePercent: 30,
+              theme: "colored",
+              hideProgressBar: true,
+              style: {
+                borderRadius: "30px",
+                width: "fit-content",
+                maxWidth: "100vw",
+                overflow: "clip",
+                color: "#000",
+                fontWeight: 700,
+              },
+           })
       console.log(err.response || "Error in changing wallpaper")
     })
   }

@@ -101,7 +101,7 @@ export const Register = () => {
 
           setTimeout(() => {
             window.location.href = "/";
-          }, 1000);
+          }, 100);
         })
         .catch((error) => {
           setIsLoading(false);

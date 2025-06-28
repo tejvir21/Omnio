@@ -6,42 +6,41 @@ import profileImage from "../assets/images/profile.png";
 import { Loader } from "../components/loader";
 
 export const Chats = () => {
-  localStorage.removeItem("id");
-  localStorage.removeItem("name");
-  localStorage.removeItem("friend");
-  localStorage.removeItem("profile_image");
-
-  if (!localStorage.getItem("user"))
-    window.location.href = "/login";
+  if (!localStorage.getItem("user")) window.location.href = "/login";
 
   const [isLoading, setIsLoading] = useState(false);
- const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [chats, setChats] = useState({
     friendsIRequested: [],
     friendsRequestedMe: [],
   });
 
-
-  const letsChat = ({ friendId, friendName, friendUsername, profile_image }) => {
-
-    setIsLoading(true)
+  const letsChat = ({
+    friendId,
+    friendName,
+    friendUsername,
+    profile_image,
+  }) => {
+    setIsLoading(true);
 
     localStorage.setItem("id", friendId);
     localStorage.setItem("name", friendName);
     localStorage.setItem("friend", friendUsername);
-    localStorage.setItem("profile_image", profile_image)
+    localStorage.setItem("profile_image", profile_image);
 
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/messages/read/${friendId}`,{}, {
-        withCredentials: true,
-      })
+      .post(
+        `${process.env.REACT_APP_SERVER_URL}/messages/read/${friendId}`,
+        {},
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => {
-        setIsLoading(false)
+        setIsLoading(false);
         // Redirect to the chat page
-        setTimeout(() => {
-          window.location.href = "/chat";
-        }, 100);
+        window.location.href = "/chat";
       })
       .catch((error) => {
         console.log(error, "Error marking messages as read");
@@ -67,7 +66,6 @@ export const Chats = () => {
     }
   };
 
-
   // Filtered lists based on searchTerm
   const filteredFriendsIRequested = chats.friendsIRequested?.filter(
     (user) =>
@@ -92,6 +90,12 @@ export const Chats = () => {
         friendsIRequested: friends.friendsIRequested,
         friendsRequestedMe: friends.friendsRequestedMe,
       });
+
+      localStorage.removeItem("id");
+      localStorage.removeItem("name");
+      localStorage.removeItem("friend");
+      localStorage.removeItem("profile_image");
+
       setIsLoading(false);
     };
 
@@ -133,7 +137,11 @@ export const Chats = () => {
                       })
                     }
                   >
-                    <img src={user.request_to.profile_image || profileImage} alt="" className="chat-avatar" />
+                    <img
+                      src={user.request_to.profile_image || profileImage}
+                      alt=""
+                      className="chat-avatar"
+                    />
                     <div className="user-detail">
                       <p className="chat-username">
                         {user.request_to.username}
@@ -157,7 +165,11 @@ export const Chats = () => {
                       })
                     }
                   >
-                    <img src={user.request_from.profile_image || profileImage} alt="" className="chat-avatar" />
+                    <img
+                      src={user.request_from.profile_image || profileImage}
+                      alt=""
+                      className="chat-avatar"
+                    />
                     <div className="user-detail">
                       <p className="chat-username">
                         {user.request_from.username}

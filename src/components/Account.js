@@ -43,7 +43,7 @@ export const Account = ({ setSelected }) => {
            });
         setTimeout(() => {
           window.location.href = "/login";
-        }, 100);
+        }, 1);
       })
       .catch((error) => {
         setIsLoading(false);

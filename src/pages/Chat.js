@@ -34,7 +34,7 @@ export const Chat = () => {
 
     // Join private room
     newSocket.emit("joinRoom", { userId, friendId });
-    
+
     setIsLoading(true);
 
     // Fetch chat history

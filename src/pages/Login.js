@@ -49,7 +49,7 @@ export const Login = () => {
 
       setTimeout(() => {
         window.location.href = "/";
-      }, 1000); // Give the toast time to show
+      }, 1); // Give the toast time to show
     } catch (error) {
       setIsLoading(false);
 
@@ -90,7 +90,6 @@ export const Login = () => {
       </div>
       <div className="login-page">
         <h1>Login</h1>
-        {/* <form onSubmit={handleSubmit}> */}
         <form
           onSubmit={handleSubmit}
         >
